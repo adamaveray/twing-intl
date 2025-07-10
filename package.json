@@ -1,0 +1,38 @@
+{
+  "name": "@averay/twing-intl",
+  "description": "Twing extensions to help with internationalisation.",
+  "author": {
+    "name": "Adam Averay",
+    "url": "https://adamaveray.au"
+  },
+  "license": "MIT",
+  "version": "1.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./index.ts"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "scripts": {
+    "format": "bun x codeformat fix",
+    "lint": "bun x codeformat check",
+    "release": "bun --bun x bumpp && bun publish --access public",
+    "prepare": "bun --bun x husky"
+  },
+  "dependencies": {
+    "@formatjs/intl": "^3.1.6",
+    "intl-messageformat": "^10.7.16"
+  },
+  "peerDependencies": {
+    "twing": "^7.2.1",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@averay/codeformat": "^0.2.9",
+    "@types/bun": "latest",
+    "bumpp": "^10.2.0",
+    "husky": "^9.1.7"
+  }
+}

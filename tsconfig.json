@@ -1,0 +1,18 @@
+{
+  "extends": "./node_modules/@averay/codeformat/tsconfig.base.json",
+  "exclude": ["*.mjs"],
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "verbatimModuleSyntax": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "#/*": ["./lib/*"],
+      "#filters/*": ["./lib/filters/*"],
+      "#functions/*": ["./lib/functions/*"],
+      "#tagHandlers/*": ["./lib/tagHandlers/*"]
+    }
+  }
+}
