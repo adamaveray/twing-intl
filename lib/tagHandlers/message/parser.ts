@@ -1,7 +1,7 @@
 import type { TwingExpressionNode, TwingParser, TwingTokenStream } from 'twing';
 import { createParsingError } from 'twing';
 
-import { endTagName, testNextIsTag } from '#/utils/parsing.ts';
+import { endTagName, skipWhitespace, testNextIsTag } from '#/utils/parsing.ts';
 import type { TwingIntlFragmentNode } from '#tagHandlers/fragment/node.ts';
 import type { FragmentTokenParser } from '#tagHandlers/fragment/tagHandler.ts';
 
@@ -58,8 +58,7 @@ function parseBody(
   fragmentTag: string,
   fragmentTokenParser: FragmentTokenParser,
 ): Record<string, TwingIntlFragmentNode> {
-  stream.nextIf('WHITESPACE');
-
+  skipWhitespace(stream);
   const fragmentNodes: Record<string, TwingIntlFragmentNode> = {};
   while (testNextIsTag(stream, fragmentTag)) {
     const { line, column } = stream.current;
@@ -70,7 +69,7 @@ function parseBody(
     }
     fragmentNodes[name] = fragment;
 
-    stream.nextIf('WHITESPACE');
+    skipWhitespace(stream);
   }
 
   return fragmentNodes;
