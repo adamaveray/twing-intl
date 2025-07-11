@@ -29,8 +29,11 @@ const intls: IntlShape[] = [
 // 3. Configure extension and assign to Twing instance
 import { TwingIntlExtension } from '@averay/twing-intl';
 
-twingEnvironment.addExtension(new TwingIntlExtension(intls, defaultLocale));
+const extension = new TwingIntlExtension(intls, defaultLocale);
+extension.applyToEnvironment(environment); // Cannot use `environment.addExtension(...)`
 ```
+
+Note the extension cannot be added using `environment.addExtension(extension)` due to limitations with Twing’s extensions API [(see related issue)](https://gitlab.com/nightlycommit/twing/-/issues/636). The method `extension.applyToEnvironment(environment)` must be used instead.
 
 ### Messages
 
