@@ -18,3 +18,22 @@ export function testNextIsTag(stream: TwingTokenStream, value?: string): boolean
 
   return true;
 }
+
+const whitespace = /^ +$/u;
+
+function isWhitespaceToken(token: Token | null): boolean {
+  if (token == null) {
+    return false;
+  }
+  return token.test('WHITESPACE') || (token.test('TEXT') && whitespace.test(token.value as string));
+}
+
+function skipWhile<T extends TwingTokenStream>(stream: T, shouldSkip: (token: Token | null) => boolean): void {
+  while (shouldSkip(stream.current as Token | null)) {
+    stream.next();
+  }
+}
+
+export function skipWhitespace(stream: TwingTokenStream): void {
+  skipWhile(stream, (token) => isWhitespaceToken(token));
+}
