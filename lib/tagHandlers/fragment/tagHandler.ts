@@ -1,9 +1,9 @@
-import type { TwingTagHandler, TwingTokenParser, TwingTokenStream } from 'twing';
+import type { TwingTagHandler, TwingTokenStream } from 'twing';
+
+import type { Token } from '#/utils/parsing.ts';
 
 import type { TwingIntlFragmentNode } from './node.ts';
 import parseFragment from './parser.ts';
-
-type Token = Parameters<TwingTokenParser>[0];
 
 export interface FragmentTagHandler extends TwingTagHandler {
   initialize(

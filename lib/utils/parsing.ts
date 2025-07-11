@@ -1,4 +1,6 @@
-import type { TwingTokenStream } from 'twing';
+import type { TwingTokenParser, TwingTokenStream } from 'twing';
+
+export type Token = Parameters<TwingTokenParser>[0]; // Would require adding an explicit dependency on 'twig-lexer' if imported directly
 
 export function endTagName(tag: string): string {
   return `end${tag}`;
